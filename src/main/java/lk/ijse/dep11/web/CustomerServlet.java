@@ -16,29 +16,29 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/customer")
+@WebServlet("/customers")
 public class CustomerServlet extends HttpServlet {
-    private  BasicDataSource pool;
-
-    @Override
-    public void init() throws ServletException {
-        pool = new BasicDataSource();
-        pool.setUsername("root");
-        pool.setPassword("123");
-        pool.setUrl("jdbc:mysql://localhost:3306/dep11");
-        pool.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        pool.setInitialSize(10);
-        pool.setMaxTotal(20);
-    }
-
-    @Override
-    public void destroy() {
-        try {
-            pool.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    private  BasicDataSource pool;
+//
+//    @Override
+//    public void init() throws ServletException {
+//        pool = new BasicDataSource();
+//        pool.setUsername("root");
+//        pool.setPassword("123");
+//        pool.setUrl("jdbc:mysql://localhost:3306/dep11");
+//        pool.setDriverClassName("com.mysql.cj.jdbc.Driver");
+//        pool.setInitialSize(10);
+//        pool.setMaxTotal(20);
+//    }
+//
+//    @Override
+//    public void destroy() {
+//        try {
+//            pool.close();
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -46,6 +46,7 @@ public class CustomerServlet extends HttpServlet {
 //            Class.forName("com.mysql.cj.jdbc.Driver");
 //            Connection connection = DriverManager
 //                    .getConnection("jdbc:mysql://localhost:3306/dep11", "root", "123");
+            BasicDataSource pool = (BasicDataSource) getServletContext().getAttribute("connectionPool");
             Connection connection= pool.getConnection();
             ResultSet rst = connection.createStatement().executeQuery("SELECT * FROM Customer");
             List<Customer> customerList = new ArrayList<>();
