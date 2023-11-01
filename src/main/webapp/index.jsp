@@ -19,11 +19,11 @@
 <body>
     <%@include file="WEB-INF/header.jsp"%>
     <main>
-        <a href="customer" target="_blank">
+        <a href="customers" target="_blank">
             <i class="bi bi-people-fill"></i>
             <span>List Customers</span>
         </a>
-        <a href="item" target="_blank">
+        <a href="items" target="_blank">
             <i class="bi bi-card-list"></i>
             <span>List Items</span>
         </a>

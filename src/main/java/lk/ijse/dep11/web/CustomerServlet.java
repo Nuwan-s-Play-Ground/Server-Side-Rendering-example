@@ -58,7 +58,7 @@ public class CustomerServlet extends HttpServlet {
                 }
             connection.close();
             req.setAttribute("customerList", customerList);
-            getServletContext().getRequestDispatcher("/WEB-INF/customer.jsp").forward(req,resp);
+            getServletContext().getRequestDispatcher("/WEB-INF/customers.jsp").forward(req,resp);
             } catch (Exception e){
                 throw  new RuntimeException(e);
         }
